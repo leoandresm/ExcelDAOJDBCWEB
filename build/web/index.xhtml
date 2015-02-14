@@ -8,8 +8,8 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        <h:form id="formCreate">
-            <p:panelGrid columns="3"> 
+        <h:form id="form">
+            <p:panelGrid columns="3" id="panelCreate"> 
                 <p:outputLabel value="Cédula" for="inputCedula"/>
                 <p:inputText type="number" id="inputCedula" value="#{estudianteController.estudianteActual.cedula}">
                     <p:ajax process="inputCedula" update="inputCedulaMessage"/>
@@ -41,17 +41,23 @@
                 <p:message for="inputCodProf" id="inputCodProfMessage"/>
             </p:panelGrid>
             
-            <p:commandButton id="save" update="datatableEstudiantes formCreate" value="Agregar"
-                             actionListener="#{estudianteController.create}"/>
+            <p:commandButton id="save" process="@this panelCreate" update="datatableEstudiantes panelCreate" value="Guardar"
+                             actionListener="#{estudianteController.save}"/>
             
             <br />
 
             <p:dataTable value="#{estudianteController.listaEstudiantes}" var="item"
+                         selectionMode="single"
+                         selection="#{estudianteController.estudianteActual}"
+                         rowKey="#{item.cedula}"
                          id="datatableEstudiantes"
                          paginator="true"
                          rows="10"
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15">
+                
+                <p:ajax event="rowSelect" update=":form:panelCreate" />
+        
                 <p:column headerText="Cédula" filterBy="#{item.cedula}" filterMatchMode="contains">
                     <h:outputText value="#{item.cedula}"/>
                 </p:column>

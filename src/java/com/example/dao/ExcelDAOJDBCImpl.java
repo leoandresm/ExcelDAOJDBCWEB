@@ -47,7 +47,7 @@ public class ExcelDAOJDBCImpl implements ExcelDAO {
     }
 
     @Override
-    public Estudiante findByCedula(int cedula) throws DAOException {
+    public Estudiante findByCedula(long cedula) throws DAOException {
         try (Statement stmt = conexion.createStatement()) {
             String query = "SELECT * FROM estudiante WHERE cedula="+ cedula;
             ResultSet rs = stmt.executeQuery(query);

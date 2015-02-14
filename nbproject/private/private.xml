@@ -4,8 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/F:/leo.moreno@misena.edu.co/NetBeansProjects/ExcelDAOJDBCWEB/src/java/com/example/controllers/EstudianteController.java</file>
-            <file>file:/F:/leo.moreno@misena.edu.co/NetBeansProjects/ExcelDAOJDBCWEB/web/welcomePrimefaces.xhtml</file>
             <file>file:/F:/leo.moreno@misena.edu.co/NetBeansProjects/ExcelDAOJDBCWEB/src/java/com/example/dao/EstudianteDAOFactory.java</file>
+            <file>file:/F:/leo.moreno@misena.edu.co/NetBeansProjects/ExcelDAOJDBCWEB/src/java/com/example/model/Estudiante.java</file>
             <file>file:/F:/leo.moreno@misena.edu.co/NetBeansProjects/ExcelDAOJDBCWEB/src/java/com/example/dao/ExcelDAO.java</file>
             <file>file:/F:/leo.moreno@misena.edu.co/NetBeansProjects/ExcelDAOJDBCWEB/src/java/com/example/dao/ExcelDAOJDBCImpl.java</file>
             <file>file:/F:/leo.moreno@misena.edu.co/NetBeansProjects/ExcelDAOJDBCWEB/web/index.xhtml</file>

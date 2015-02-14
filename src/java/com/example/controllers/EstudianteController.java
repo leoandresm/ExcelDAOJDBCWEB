@@ -54,12 +54,19 @@ public class EstudianteController {
         return listaEstudiantes;
     }
 
-    public void create() {
+    public void save() {
         if (estudianteActual != null) {
             try (ExcelDAO dao = factory.createEstudianteDAO()) {
-                dao.create(estudianteActual);
-                estudianteActual = null;
-                listaEstudiantes = null;
+                if (dao.findByCedula(estudianteActual.getCedula()) == null) {
+                    dao.create(estudianteActual);
+                    estudianteActual = null;
+                    listaEstudiantes = null;
+                } else {
+                    dao.update(estudianteActual);
+                    estudianteActual = null;
+                    listaEstudiantes = null;
+                }
+
             } catch (Exception ex) {
                 System.out.println("Error creando estudiante");
             }
