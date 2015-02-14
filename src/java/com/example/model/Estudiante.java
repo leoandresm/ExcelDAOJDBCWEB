@@ -9,11 +9,34 @@ public class Estudiante {
     private int ficha;
     private int codProf;
 
+    public Estudiante() {
+    }
+    
     public Estudiante(long cedula, String apellidos, String nombres, int ficha, int codProf) {
         this.cedula = cedula;
         this.apellidos = apellidos;
         this.nombres = nombres;
         this.ficha = ficha;
+        this.codProf = codProf;
+    }
+
+    public void setCedula(long cedula) {
+        this.cedula = cedula;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+
+    public void setFicha(int ficha) {
+        this.ficha = ficha;
+    }
+
+    public void setCodProf(int codProf) {
         this.codProf = codProf;
     }
 

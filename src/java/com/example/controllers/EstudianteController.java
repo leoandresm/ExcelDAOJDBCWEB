@@ -19,10 +19,10 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class EstudianteController {
-    
+
     private Estudiante estudianteActual;
     private List<Estudiante> listaEstudiantes = null;
-    
+
     private EstudianteDAOFactory factory;
 
     /**
@@ -33,6 +33,9 @@ public class EstudianteController {
     }
 
     public Estudiante getEstudianteActual() {
+        if (estudianteActual == null) {
+            estudianteActual = new Estudiante();
+        }
         return estudianteActual;
     }
 
@@ -42,7 +45,7 @@ public class EstudianteController {
 
     public List<Estudiante> getListaEstudiantes() {
         if (listaEstudiantes == null) {
-            try (ExcelDAO dao = factory.createEstudianteDAO()){
+            try (ExcelDAO dao = factory.createEstudianteDAO()) {
                 listaEstudiantes = dao.getAllEstudiantes();
             } catch (Exception ex) {
                 System.out.println("Error consultando estudiantes");
@@ -50,6 +53,17 @@ public class EstudianteController {
         }
         return listaEstudiantes;
     }
-    
-    
+
+    public void create() {
+        if (estudianteActual != null) {
+            try (ExcelDAO dao = factory.createEstudianteDAO()) {
+                dao.create(estudianteActual);
+                estudianteActual = null;
+                listaEstudiantes = null;
+            } catch (Exception ex) {
+                System.out.println("Error creando estudiante");
+            }
+        }
+    }
+
 }

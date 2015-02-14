@@ -2,26 +2,72 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        Hello from Facelets
-        <br />
-        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
-        
-        <p:dataTable value="#{estudianteController.listaEstudiantes}" var="item"
-                     paginator="true"
+        <h:form id="formCreate">
+            <p:panelGrid columns="3"> 
+                <p:outputLabel value="Cédula" for="inputCedula"/>
+                <p:inputText type="number" id="inputCedula" value="#{estudianteController.estudianteActual.cedula}">
+                    <p:ajax process="inputCedula" update="inputCedulaMessage"/>
+                </p:inputText>
+                <p:message for="inputCedula" id="inputCedulaMessage"/>
+                
+                <p:outputLabel value="Nombres" for="inputNombre"/>
+                <p:inputText type="text" id="inputNombre" value="#{estudianteController.estudianteActual.nombres}">
+                    <p:ajax process="inputNombre" update="inputNombreMessage"/>
+                </p:inputText>
+                <p:message for="inputNombre" id="inputNombreMessage"/>
+           
+                <p:outputLabel value="Apellidos" for="inputApellido"/>
+                <p:inputText type="text" id="inputApellido" value="#{estudianteController.estudianteActual.apellidos}">
+                    <p:ajax process="inputApellido" update="inputApellidoMessage"/>
+                </p:inputText>
+                <p:message for="inputApellido" id="inputApellidoMessage"/>
+                
+                <p:outputLabel value="Ficha" for="inputFicha"/>
+                <p:inputText type="number" id="inputFicha" value="#{estudianteController.estudianteActual.ficha}">
+                    <p:ajax process="inputFicha" update="inputFichaMessage"/>
+                </p:inputText>
+                <p:message for="inputFicha" id="inputFichaMessage"/>
+                
+                <p:outputLabel value="Código Profesión" for="inputCodProf"/>
+                <p:inputText type="number" id="inputCodProf" value="#{estudianteController.estudianteActual.codProf}">
+                    <p:ajax process="inputCodProf" update="inputCodProfMessage"/>
+                </p:inputText>
+                <p:message for="inputCodProf" id="inputCodProfMessage"/>
+            </p:panelGrid>
+            
+            <p:commandButton id="save" update="datatableEstudiantes formCreate" value="Agregar"
+                             actionListener="#{estudianteController.create}"/>
+            
+            <br />
+
+            <p:dataTable value="#{estudianteController.listaEstudiantes}" var="item"
+                         id="datatableEstudiantes"
+                         paginator="true"
+                         rows="10"
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15">
-            <p:column headerText="Cédula">
-                <h:outputText value="#{item.cedula}"/>
-            </p:column>
-            <p:column headerText="Nombres">
-                <h:outputText value="#{item.nombres}"/>
-            </p:column>
-            
-        </p:dataTable>
+                <p:column headerText="Cédula" filterBy="#{item.cedula}" filterMatchMode="contains">
+                    <h:outputText value="#{item.cedula}"/>
+                </p:column>
+                <p:column headerText="Nombres" filterBy="#{item.nombres}" filterMatchMode="contains">
+                    <h:outputText value="#{item.nombres}"/>
+                </p:column>
+                <p:column headerText="Apellidos" filterBy="#{item.apellidos}" filterMatchMode="contains">
+                    <h:outputText value="#{item.apellidos}"/>
+                </p:column>
+                <p:column headerText="Ficha" filterBy="#{item.ficha}" filterMatchMode="contains">
+                    <h:outputText value="#{item.ficha}"/>
+                </p:column>
+                <p:column headerText="Código profesión" filterBy="#{item.codProf}" filterMatchMode="contains">
+                    <h:outputText value="#{item.codProf}"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
     </h:body>
 </html>
