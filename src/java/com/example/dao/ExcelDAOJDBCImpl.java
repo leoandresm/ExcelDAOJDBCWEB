@@ -54,7 +54,7 @@ public class ExcelDAOJDBCImpl implements ExcelDAO {
             if (!rs.next()) {
                 return null;
             }
-            return (new Estudiante(rs.getInt("cedula"),
+            return (new Estudiante(rs.getLong("cedula"),
                     rs.getString("apellidos"),
                     rs.getString("nombres"),
                     rs.getInt("ficha"),
@@ -82,7 +82,7 @@ public class ExcelDAOJDBCImpl implements ExcelDAO {
     }
 
     @Override
-    public void delete(int cedula) throws DAOException {
+    public void delete(long cedula) throws DAOException {
         try (Statement stmt = conexion.createStatement()) {
             String query = "DELETE FROM estudiante WHERE cedula=" + cedula;
             stmt.executeUpdate(query);
